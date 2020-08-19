@@ -1,0 +1,48 @@
+---
+layout: post
+title:  "Google에 내 블로그가 검색되도록 설정하기"
+date:   2020-08-20 01:03:00
+categories: Jekyll
+tags : [jekyll, github page, 지킬, github blog, google, 검색, search]
+---
+
+보고 있는 현재 블로그는 깃헙 페이지를 이용하여 만든 블로그이다.  
+보통 네이버나 다음과 같은 포털사이트를 이용하여 만든 블로그는 내가 굳이 따로 설정을 하지 않더라도 검색이 가능하지만, 
+깃헙 페이지로 만든 블로그는 구글이나, 네이버, 다음과 같은 사이트에서 검색이 되도록 따로 등록해주어야 한다.
+
+---
+### sitemap 생성
+
+사이트맵은 나의 블로그 내에 있는 모든 글들과 목록들을 나열한 파일(.xml)이다. 즉, 검색엔진에 내 블로그 내에 있는 모든 내용들을 제공하여 크롤링 될 수 있도록 도와주는 역할을 한다.  
+
+sitemap을 생성하는 방법에는 여러가지가 있지만 작성자가 가장 쉬웠던 방법만 일단 소개하고자 한다. 이 내용은 (http://jinyongjeong.github.io/ 의 블로그를 참고하였다.)
+
+1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다. (반드시 root)
+
+---
+
+#### 텍스트 그대로 표현
+
+---
+
+최종수정일 2020.08.20
+
+
+
+> ###### References
+> http://jinyongjeong.github.io/2017/01/13/blog_make_searched/
+> https://www.twinword.co.kr/blog/3-different-ways-to-generate-and-submit-sitemap/
+
+{% highlight ruby %}
+print("hello, neighbors!")
+print("Sungwon Kim © 2020 • All rights reserved.")
+{% endhighlight %}
+
+
+
+
+
+[Github][githuburl]
+
+[githuburl]: https://github.com/kpiswon
+
