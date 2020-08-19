@@ -6,13 +6,14 @@ markdown: kramdown
 highlighter: rouge
 logo: false
 paginate: 15
+
 baseurl: ""
 domain_name: "https://kpiswon.github.io"
 google_analytics: "UA-175844509-1"
 plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url: ""
+url: "https://kpiswon.github.io"
 author: "Sungwon Kim"
 
 # Disqus config

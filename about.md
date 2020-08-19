@@ -3,4 +3,4 @@ layout: page
 title: About me 
 ---
 
-This is a static page. It could be an 'about page' if you'd like.
+아는 것이 구글링 뿐이다.
