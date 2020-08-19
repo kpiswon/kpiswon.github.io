@@ -18,3 +18,7 @@ author: "Sungwon Kim"
 # Disqus config
 disqus-shortname: ""
 
+#여기서부터 내가 추가함
+future : true
+published : true
+

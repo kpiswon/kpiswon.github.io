@@ -12,3 +12,9 @@
 @import
 	"syntax"
 ;
+
+//font를 asset 폴더에 넣고 경로 지정
+@font-face {
+	font-family: "NanumBarunGothic";
+		src: url( '../assets/fonts/NanumBarunGothic.ttf') format('truetype');
+}
