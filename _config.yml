@@ -1,6 +1,8 @@
 name: Sungwon Kim
 description: 구글링 전문 개발자
 meta_description: "구글링으로 다져가는 비전공자의 테크블로그"
+email : "kpiswon@gmail.com"
+github : "kpiswon"
 
 markdown: kramdown
 highlighter: rouge
@@ -24,9 +26,3 @@ future : true
 published : true
 search : true
 search_full_content : true
-
-author:
-  name : "Sungwon Kim"
-  email : "kpiswon@gmail.com"
-  github : "kpiswon"
-  
