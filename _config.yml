@@ -1,6 +1,6 @@
-name: Your New Jekyll Site
-description: Blogging about stuffs
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
+name: Sungwon Kim
+description: 구글링 전문 개발자
+meta_description: "구글링으로 다져가는 비전공자의 테크블로그"
 
 markdown: kramdown
 highlighter: rouge
@@ -13,7 +13,7 @@ plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url: ""
-author: "Your Name"
+author: "Sungwon Kim"
 
 # Disqus config
 disqus-shortname: ""
