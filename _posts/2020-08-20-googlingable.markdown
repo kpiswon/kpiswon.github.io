@@ -83,11 +83,80 @@ root % vi sitemap.xml
 vi 모드에 들어가서 I를 눌러 weekly로 된 부분을 daily로 수정하고 esc를 누르고 Z를 눌러 vi 모드를 나간다.
 (기본적인 건데 필자는 몰라서 쩔쩔메던 기억이 있다. 더 자세한 것은 vi 단축키를 구글링하면 자세하게 나온다.)
 
+Github에 Push하고 잘 반영이 되었는 지 확인해보자.
 
+![cgfreq](/assets/images/chgfreq.png)
+
+Daily로 바뀐 것을 확인할 수 있다.
 
 ---
+### RSS feed 생성
 
+RSS feed를 이용하여 네이버와 다음에 등록을 할 것이다. root 디렉토리에 feed.xml을 생성하고 다음 코드를 붙여넣는다.
 
+```
+{% raw %}
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <generator>Jekyll v{{ jekyll.version }}</generator>
+    {% for post in site.posts limit:30 %}
+      <item>
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.content | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
+        {% for tag in post.tags %}
+        <category>{{ tag | xml_escape }}</category>
+        {% endfor %}
+        {% for cat in post.categories %}
+        <category>{{ cat | xml_escape }}</category>
+        {% endfor %}
+      </item>
+    {% endfor %}
+  </channel>
+</rss>
+{%endraw%}
+```
+
+---
+### robots.txt 생성
+
+robots.txt 파일에 sitemap.xml 파일의 위치를 등록하여 검색엔진의 크롤러들이 크롤링하는 데 도움을 주도록 하자.
+root 디렉토리에 robot.txt 파일을 만들고 다음 내용을 입력한다.
+
+```
+User-agent: * #허용할 검색엔진 명을 넣으면 된다. *는 모든 검색엔진을 허용한다.
+Allow: /
+
+Sitemap: http://kpiswon.github.io/sitemap.xml #본인의 sitemap.xml의 url을 입력하면 된다.
+```
+
+---
+### 사이트 등록
+
+#### GOOGLE에 등록하기  
+[Google Search Console](https://www.google.com/webmasters/#?modal_active=none)에 접속하여 본인의 sitemap.xml 파일을 등록하여야 한다.
+> 1. 구글서치콘솔에서 'SEARCH CONSOLE' 버튼 클릭
+> 2. 도메인과 URL접두어 중에 URL 접두어에 자신의 홈페이지 주소를 입력한다.
+> 3. 소유권 확인이 완료되었다면, '속성으로 이동' 버튼을 클릭한다.
+> 4. 색인메뉴에 Sitemaps 메뉴에 들어가 자신의 sitemap.xml을 제출한다.
+
+![3](/assets/images/google_search_console.png)
+
+#### 네이버에 등록하기
+[네이버 웹마스터 도구](https://searchadvisor.naver.com/)에 접속하여 등록하여야 한다. 
+사이트 등록을 시작하면 사이트 소유확인을 거치게 되는 데 자신이 편한 방법으로 시키는대로 하면 된다.
 ---
 
 최종수정일 2020.08.20
