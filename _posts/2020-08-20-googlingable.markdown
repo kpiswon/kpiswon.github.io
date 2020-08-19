@@ -6,16 +6,16 @@ categories: Jekyll
 tags : [jekyll, github page, 지킬, github blog, google, 검색, search]
 ---
 
-보고 있는 현재 블로그는 깃헙 페이지를 이용하여 만든 블로그이다.  
+이 블로그는 깃헙 페이지를 이용하여 만든 블로그이다.  
 보통 네이버나 다음과 같은 포털사이트를 이용하여 만든 블로그는 내가 굳이 따로 설정을 하지 않더라도 검색이 가능하지만, 
-깃헙 페이지로 만든 블로그는 구글이나, 네이버, 다음과 같은 사이트에서 검색이 되도록 따로 등록해주어야 한다.
+<u>깃헙 페이지로 만든 블로그는 구글이나, 네이버, 다음과 같은 사이트에서 검색이 되도록 따로 등록해주어야 한다.</u>
 
 ---
 ### sitemap 생성
 
 사이트맵은 나의 블로그 내에 있는 모든 글들과 목록들을 나열한 파일(.xml)이다. 즉, 검색엔진에 내 블로그 내에 있는 모든 내용들을 제공하여 크롤링 될 수 있도록 도와주는 역할을 한다.  
 
-sitemap을 생성하는 방법에는 여러가지가 있지만 작성자가 가장 쉬웠던 방법만 일단 소개하고자 한다. 이 내용은 (http://jinyongjeong.github.io/ 의 블로그를 참고하였다.)
+sitemap을 생성하는 방법에는 여러가지가 있지만 작성자가 가장 쉬웠던 방법만 일단 소개하고자 한다.
 
 ##### 1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다.  
 ![root](/assets/images/root.png)
@@ -154,7 +154,7 @@ Sitemap: http://kpiswon.github.io/sitemap.xml #본인의 sitemap.xml의 url을 �
 
 ![3](/assets/images/google_search_console.png)
 
-#### 네이버에 등록하기
+#### 네이버에 등록하기  
 [네이버 웹마스터 도구](https://searchadvisor.naver.com/)에 접속하여 등록하여야 한다. 
 사이트 등록을 시작하면 사이트 소유확인을 거치게 되는 데 자신이 편한 방법으로 시키는대로 하면 된다. 소유권 확인이 완료되면 RSS를 등록하는 과정이 필요하다.
 
@@ -163,7 +163,12 @@ Sitemap: http://kpiswon.github.io/sitemap.xml #본인의 sitemap.xml의 url을 �
 > 3. 다시 요청 > 사이트맵제출로 들어간다.  
 > 4. 블로그URL/sitemap.xml을 입력한다.  
 
-필자는 RSS제출 시 "등록한 사이트의 주소와 RSS 본문의 link 주소가 다릅니다."라는 오류가 발생하였다. 
+
+~~필자는 RSS제출 시 "등록한 사이트의 주소와 RSS 본문의 link 주소가 다릅니다."라는 오류가 발생하였다. 아직 해결하지 못하였다~~
+
+#### 다음(Daum)에 등록하기  
+[DAUM 검색등록](https://register.search.daum.net/index.daum)에 로그인 후 자신의 URL을 등록만 하면 된다.
+
 
 ---
 
