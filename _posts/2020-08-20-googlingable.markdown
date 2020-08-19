@@ -17,7 +17,41 @@ tags : [jekyll, github page, 지킬, github blog, google, 검색, search]
 
 sitemap을 생성하는 방법에는 여러가지가 있지만 작성자가 가장 쉬웠던 방법만 일단 소개하고자 한다. 이 내용은 (http://jinyongjeong.github.io/ 의 블로그를 참고하였다.)
 
-1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다. (반드시 root)
+1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다.
+[root](/assets/images/root.png)
+```
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
+
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
+</urlset>
+```
+1. github에 push하고 블로그주소/sitemap.xml로 접속했을 때 아래와 같은 화면이 나오면 정상적으로 sitemap에 등록된 것이다.
+
 
 ---
 
