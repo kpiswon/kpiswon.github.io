@@ -22,4 +22,11 @@ disqus-shortname: ""
 #여기서부터 내가 추가함
 future : true
 published : true
+search : true
+search_full_content : true
 
+author:
+  name : "Sungwon Kim"
+  email : "kpiswon@gmail.com"
+  github : "kpiswon"
+  
