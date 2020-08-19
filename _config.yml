@@ -8,7 +8,7 @@ logo: false
 paginate: 15
 baseurl: ""
 domain_name: "http://kpiswon.github.io"
-google_analytics: "UA-XXXXXXXX-X"
+google_analytics: "UA-175844509-1"
 plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator

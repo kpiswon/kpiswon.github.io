@@ -3,6 +3,8 @@ layout: post
 title:  "Jekyll로 만든 첫 블로그"
 date:   2020-08-19 16:22:00
 categories: 일반
+tags : [jekyll, markdown, github page, 지킬, 마크다운, 코딩테스트, 코테]
+
 ---
 
 
