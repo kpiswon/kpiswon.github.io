@@ -17,9 +17,12 @@ tags : [jekyll, github page, 지킬, github blog, google, 검색, search]
 
 sitemap을 생성하는 방법에는 여러가지가 있지만 작성자가 가장 쉬웠던 방법만 일단 소개하고자 한다. 이 내용은 (http://jinyongjeong.github.io/ 의 블로그를 참고하였다.)
 
-1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다.
-[root](/assets/images/root.png)
+##### 1. /root 경로에 /sitemap.xml 파일을 생성하고 아래 내용을 붙여넣는다.  
+![root](/assets/images/root.png)
+
+
 ```
+{% raw %}
 ---
 layout: null
 ---
@@ -49,13 +52,41 @@ layout: null
     </url>
   {% endfor %}
 </urlset>
+{%endraw%}
 ```
-1. github에 push하고 블로그주소/sitemap.xml로 접속했을 때 아래와 같은 화면이 나오면 정상적으로 sitemap에 등록된 것이다.
+
+##### 2. github에 push하고 블로그주소/sitemap.xml로 접속했을 때 아래와 같은 화면이 나오면 정상적으로 sitemap에 등록된 것이다.
+
+![sitemapadd](/assets/images/sitemapadd.png)
+
+##### 3. sitemap.xml에 default 값으로 설정되어 있는 changefreq를 daily로 바꿔주자.  
+changefreq를 너무 짧게 하면 접속을 자주하게 되어 안좋은 영향을 미칠 수 있다고 하니 하루에서 일주일이 적당하다. 이 블로그는 포스팅 수가 많지 않으므로 daily로 바꿔주도록 하겠다.
+
+
+```
+{% raw %}
+<url>
+<loc>/jekyll/2020/08/20/googlingable.html</loc>
+<lastmod>2020-08-20T01:03:00+00:00</lastmod>
+<changefreq>weekly</changefreq> # <- 이 부분을 수정할 것
+<priority>0.5</priority>
+</url>
+{%endraw%}
+```
+
+
+{% highlight ruby %}
+#root folder에서 sitemap.xml을 수정한다.
+root % vi sitemap.xml
+{% endhighlight %}
+
+vi 모드에 들어가서 I를 눌러 weekly로 된 부분을 daily로 수정하고 esc를 누르고 Z를 눌러 vi 모드를 나간다.
+(기본적인 건데 필자는 몰라서 쩔쩔메던 기억이 있다. 더 자세한 것은 vi 단축키를 구글링하면 자세하게 나온다.)
+
 
 
 ---
 
-#### 텍스트 그대로 표현
 
 ---
 

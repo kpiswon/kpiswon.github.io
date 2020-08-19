@@ -18,6 +18,43 @@ Jeykyll을 이용해서 만든 Github Page도 마크다운을 이용해서 포�
 
   ** <- 별 두개는 마크다운이지만 이 줄 맨 앞에 스페이스를 2개 주었기 때문에 ** 그대로 표현된다.
 
+#### 코드 그대로 표현
+다수의 코드를 한 번에 RAW하게 표현하기 위해서는 {% raw %}와, {% endraw %}를 이용하면 된다.
+실제로 이용 할 때에는 {와 %를 붙여쓰면 된다.
+> ###### 예제  
+
+{% highlight ruby %}
+{%raw%}
+{ % raw % }
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    </url>
+  {% endfor %}
+</urlset>
+{ % endraw % }
+{%endraw%}
+{% endhighlight %} 
+
+> ###### 결과  
+
+```
+{%raw%}
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    </url>
+  {% endfor %}
+</urlset>
+{%endraw%}
+```
+
 ---
 
 #### Terminal 창모양 만들기
@@ -304,8 +341,8 @@ ___
 
 ---
 
-최종수정일 2020.08.20
-
+최종수정일 2020.08.20 (코드 그대로 표현 추가)  
+1차수정일 2020.08.19
 
 
 > ###### References
