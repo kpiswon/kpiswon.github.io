@@ -154,6 +154,61 @@ Sitemap: http://kpiswon.github.io/sitemap.xml #본인의 sitemap.xml의 url을 �
 
 ![3](/assets/images/google_search_console.png)
 
+등록을 하고 나니, Sitemap.xml에 문제가 있다는 것을 발견했다.  
+Google Search Console에서 나의 Sitemaps에 어떤 오류가 발생하는 지 보고해주는 데, 다음 오류가 발생했다.
+
+> 사이트맵을 읽을 수 있지만 오류가 있습니다.  
+> 잘못된 URL입니다.  
+> 유효한 URL이 아닙니다. 수정한 후 다시 제출하십시오.  
+
+![error](/assets/images/error1.png)
+
+들어가면 어떤 부분에서 오류가 뜨는 지도 친절하게 설명해주는 데 <loc> 태그 내의 url이 유효하지 않다는 것을 알려준다.  
+살펴보니, post의 url만 표시되고, 홈페이지의 url이 잘려있었다. sitemap.xml의 코드를 다음과 같이 수정하여 해결하였다.
+
+###### 기존 코드
+```
+{% raw %}
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc> # 이 부분을 수정한다.
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
+
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
+</urlset>
+{%endraw%}
+```
+
+###### 수정 코드  
+```
+{% raw %}
+      # 자신의 홈페이지 주소를 {{site.url}}을 지우고 입력한다
+      <loc>kpiswon.github.io{{ post.url }}</loc>  
+{%endraw%}
+```
+
 #### 네이버에 등록하기  
 [네이버 웹마스터 도구](https://searchadvisor.naver.com/)에 접속하여 등록하여야 한다. 
 사이트 등록을 시작하면 사이트 소유확인을 거치게 되는 데 자신이 편한 방법으로 시키는대로 하면 된다. 소유권 확인이 완료되면 RSS를 등록하는 과정이 필요하다.
@@ -167,12 +222,13 @@ Sitemap: http://kpiswon.github.io/sitemap.xml #본인의 sitemap.xml의 url을 �
 ~~필자는 RSS제출 시 "등록한 사이트의 주소와 RSS 본문의 link 주소가 다릅니다."라는 오류가 발생하였다. 아직 해결하지 못하였다~~
 
 #### 다음(Daum)에 등록하기  
-[DAUM 검색등록](https://register.search.daum.net/index.daum)에 로그인 후 자신의 URL을 등록만 하면 된다.
+[Daum 검색등록](https://register.search.daum.net/index.daum)에 로그인 후 자신의 URL을 등록만 하면 된다.
 
 
 ---
 
-최종수정일 2020.08.20
+최종수정일 2020.08.20 (Sitemap.xml 오류 해결 추가)
+1차수정일 2020.08.19
 
 
 
