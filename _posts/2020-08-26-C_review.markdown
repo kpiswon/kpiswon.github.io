@@ -6,7 +6,7 @@ categories: C_Programming
 tags : [C언어, C, 개발환경, Visual Studio]
 ---
 
-파이썬에 익숙하다보니 C언어를 배웠음에도 불구하고 문법이 헷갈리는 경우가 많다.  
+파이썬에 익숙하다보니 C언어를 배웠음에도 불구하고 문법이 헷갈리는 경우가 많다.
 C언어를 안쓴 지 2년이 넘었지만 다시 쓸 일이 생겨 기억을 빠르게 상기하고자 실무적인 것만 요약해보았다.
 
 ---
@@ -112,7 +112,7 @@ My age : 26
 
 ### 변수의 자료형
 
- __정수형 변수__ : char, short, int, long, long long
+ __정수형 변수__ : char, short, int, long, long long  
  __실수형 변수__ : float, double, long double
 
 각 자료형의 크기는 필요할 때 다시 찾아보기로 하자.
@@ -167,7 +167,7 @@ ___
 
 
 > ###### References
-> 고려대학교 202R 자료구조, 김민수
+> 고려대학교 202R 자료구조, 김민수  
 > 고려대학교 181R 컴퓨터언어 및 실습, 천지영 
 
 {% highlight ruby %}
