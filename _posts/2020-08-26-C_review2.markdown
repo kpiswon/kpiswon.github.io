@@ -1,0 +1,240 @@
+---
+layout: post
+title:  "C언어 한 번에 기억 되살리기 - 개발환경 구축부터 주요 문법까지(PART II)"
+date:   2020-08-30 02:30:00
+categories: C_Programming
+tags : [C언어, C, 개발환경, Visual Studio]
+---
+
+[이어서](https://kpiswon.github.io/c_programming/2020/08/26/C_review.html) 기본적으로 자주 쓰이는 함수들을 정리해보겠다. 
+printf, 반복문 등 기본적인 것들을 너무 상세히 서술하기보다 기억을 되살릴 수 있는 정도로만 서술하겠다.
+
+---
+
+### printf 함수  
+
+* 특수문자 종류
+
+|특수 문자|의미|
+|:---:|:---:|
+|\a|경고음|
+|\b|백스페이스|
+|\f|폼피드|
+|\n|개행|
+|\r|캐리지 리턴|
+|\t|수평탭|
+|\v|수직탭
+|\ '|작은 따옴표 출력
+|\ "|큰 따옴표 출력
+|\?|물음표 출력
+
+---
+
+### 반복문
+
+> 
+###### 1. while 문  
+```
+while (조건){
+    조건 만족 시
+}
+조건 불만족 시
+```
+
+>
+###### 2. do ~ while (;에 주의한다)  
+```
+do{
+    조건 만족 시
+} while (조건);
+조건 불만족 시
+```  
+while문과 다르게 조건 만족 시 코드를 먼저 실행하고 조건 검사를 나중에 진행한다.
+
+>
+###### 3. for문  
+예시로 이해하는 것이 더 빠르다.  
+```
+for(int num=0; num<3; num++)
+   printf("Hi");
+```
+
+---
+
+
+### 조건문
+
+> 
+###### 1. if문
+```
+if(조건검사){
+   조건 맞으면
+}
+else if(조건검사2){
+   조건2 맞으면
+}
+else 
+   조건검사 다 아니면
+```
+* 예시  
+```
+if(num % 3 == 0 || num % 4 == 0){
+    printf("%d", num);
+}
+else if (num = 0){
+    printf("%d", num);
+}
+else{
+    printf("몰라!")
+}
+```
+
+>
+###### 2. 삼항연산자
+```
+(조건검사) ? (data1) : (data2) ;   
+조건이 맞으면 data1, 틀리면 data2
+```  
+* 예시
+```
+int abs;
+abs = (num > 0) ? (num) : (num+2);
+```
+
+>
+###### 3. break 문  
+자신을 감싸는 반복문을 빠져나감
+* 예시
+```  
+for(int x; x>20; x++){
+    if(x%7 == 0)
+        break;
+}
+```  
+위 예시의 경우 for문을 아예 탈출한다.
+
+>
+###### 4. continue 문  
+자신을 감싸는 반복문을 빠져나가지는 않고, 반복 조건을 확인하러 다시 올라감
+* 예시 
+```
+for(int x; x>20; x++){
+    if(x%7 == 0)
+        continue;
+}
+```  
+위 예시의 경우 x++하여 for문의 조건검사를 하러 간다.
+
+>
+###### switch 문
+* 예시  
+> {% highlight ruby %}
+#include <stdio.h>
+int main(void){
+    char cho;
+    printf("M: 오전, A: 오후, E: 저녁 \n");
+    printf("입력: ");
+    scanf("%c", &cho);
+
+    switch (cho){
+        case 'M': // break  안쓸 때 적절한 활용
+        case 'm':
+            printf("morning \n");
+            break;
+        case 'A':
+        case 'a':
+            printf("afternoon \n");
+            break;
+        case 'E':
+        case 'e':
+            printf("evening \n");
+            break;
+        default:
+            "올바른 값을 입력하지 않았습니다."
+    }
+    return 0;
+}
+ {% endhighlight %}
+
+---
+
+
+> OUTPUT
+
+```
+20
+10 20
+My age : 26
+2.223
+2.223000
+```
+
+### 변수의 자료형
+
+ __정수형 변수__ : char, short, int, long, long long  
+ __실수형 변수__ : float, double, long double
+
+각 자료형의 크기는 필요할 때 다시 찾아보기로 하자.
+
+### 연산자
+
+ __%__ : 두 피 연산자의 값을 나눈 후 생긴 나머지 ex) num = 7 % 4;  
+ __++num__ : ex) val = ++num; 인 경우, num을 1 증가 시킨 후 val에 대입  
+ __num++__ : ex) val = num++; 인 경우, val에 num을 대입 후 num 1 증가  
+
+* 비트 연산자  
+
+ 연산자|연산자의 기능|예시
+ :---:|:---:|:---:
+ &|비트 단위로 AND 연산|num1&num2;
+ ^|비트 단위로 XOR 연산|상동
+ ~|피연산자의 모든 비트 반전|~num1;
+ <<|피연산자의 비트 열을 왼쪽으로 이동시킴|num1 << 2;
+ >>|피연산자의 비트 열을 오른쪽으로 이동시킴|상동
+
+### 데이터 입력
+
+> INPUT
+
+```C
+#include <stdio.h>
+int main(void){
+    int num1, num2, num3;
+    scanf_s("%d %d %d", &num1, &num2, &num3);
+    printf("%d %d %d \n", num1, num2, num3);
+
+    double rad;
+    scanf("%lf", &rad); 
+    printf("%f", rad); 
+    return 0;
+}
+```
+
+> OUTPUT 
+
+```
+1 22 33  
+1 22 33  
+2.223
+2.223000
+```
+
+___
+
+최종수정일 2020.08.26
+
+
+
+> ###### References
+> 고려대학교 202R 자료구조, 김민수  
+> 고려대학교 181R 컴퓨터언어 및 실습, 천지영 
+
+{% highlight ruby %}
+print("hello, neighbors!")
+print("Sungwon Kim © 2020 • All rights reserved.")
+{% endhighlight %}
+
+[Github][githuburl]
+
+[githuburl]: https://github.com/kpiswon
+
