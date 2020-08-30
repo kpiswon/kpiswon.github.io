@@ -3,7 +3,7 @@ layout: post
 title:  "Google에 내 블로그가 검색되도록 설정하기"
 date:   2020-08-20 01:03:00
 categories: Jekyll
-tags : [jekyll, github page, 지킬, github blog, google, 검색, search]
+tags : [jekyll, github page, 지킬, github blog, google, 검색, search, google search console, naver webmaster, 네이버 웹마스터 도구, 웹마스터 ]
 ---
 
 이 블로그는 깃헙 페이지를 이용하여 만든 블로그이다.

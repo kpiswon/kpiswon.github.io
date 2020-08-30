@@ -1,0 +1,181 @@
+---
+layout: post
+title:  "C언어 한 번에 기억 되살리기 - 개발환경 구축부터 주요 문법까지(PART I)"
+date:   2020-08-26 02:30:00
+categories: C_Programming
+tags : [C언어, C, 개발환경, Visual Studio]
+---
+
+파이썬에 익숙하다보니 C언어를 배웠음에도 불구하고 문법이 헷갈리는 경우가 많다.
+C언어를 안쓴 지 2년이 넘었지만 다시 쓸 일이 생겨 기억을 빠르게 상기하고자 실무적인 것만 요약해보았다.
+
+---
+
+### 개발환경 설정
+Visual Studio를 Windows 환경에서 설치를 해보겠다. 앞으로 포스팅할 자료구조에 대한 포스팅도 모두 윈도우 환경에서 진행된다.
+
+> ###### 개발환경
+> Windows10 + Visual Studio Community 2019 + C Programming
+
+##### Visual Studio 2019 설치
+[여기](https://visualstudio.microsoft.com/ko)에 접속하여 Visual Studio 다운로드를 클릭한 후 Community 2019를 다운받는다.  
+
+다운로드를 진행하다가 다음 화면에서 나는 C프로그래밍만 할 것이기 때문에 `C++를 사용한 데스크톱 개발`을 클릭하고 `설치`버튼을 누른다.
+
+![C1](/assets/images/C1.PNG)
+
+설치가 완료되면 Visual Studio를 실행시키고 `새 프로젝트 만들기`를 클릭한다.
+
+![C2](/assets/images/C2.PNG)
+
+모든언어에서 `C++ 언어`를 선택한다. 그리고 `빈 프로젝트`를 클릭한다.
+
+![C3](/assets/images/C3.PNG)
+
+프로젝트 이름, 위치, 솔루션 이름을 작성하고 만들기를 클릭하면 다음과 같은 화면이 보이는데, 여기서 솔루션 탐색기 부분의 `소스파일`폴더 위에 오른쪽 마우스를 클릭하여 `추가` -> `새 항목`을 클릭한다.
+
+![C4](/assets/images/C4.png)
+
+`C++ 파일(.cpp)`를 선택하고 추가한다.
+
+![C5](/assets/images/C5.PNG)
+
+프로그램 코드를 작성해보자.
+
+{% highlight ruby %}
+#include "stdio.h"
+
+int main()
+{
+    printf("환경 구축하기 귀찮지만 어쩔 수 없지 \n");
+    return 0;
+}
+{% endhighlight %}
+
+`로컬 Windows 디버거`를 실행하여 정상적으로 작동하는 지 확인한다.
+
+![C6](/assets/images/C6.PNG)
+
+---
+## C Programming 기본 문법
+---
+### 기본 구조
+{% highlight ruby %}
+#include <stdio.h> #stdio.h 파일 내용을 가져옴, 기본적으로 다양한 함수들을 제공
+
+int main(void)
+{
+    printf("hello world! \n");
+    return 0;
+}
+{% endhighlight %}
+
+### 문법 훑어보기
+> INPUT  
+
+```C  
+#include <stdio.h>
+int main(void){
+
+    /* 
+    주석처리 된 문장
+    주석처리 된 문장2
+    한줄짜리 주석은 //로 한다
+    */
+
+    int num0; // 변수 선언이 필요하다
+    int num1, num2; // 변수 선언하는 방법
+    int num3 = 10, num4 = 20; // 이것도 가능
+    num0 = 20;
+    double rad;
+
+    printf("%d \n", num0); //printf(num0) 아니다
+    printf("%d %d \n", 10, 20); //차례대로 출력
+    printf("My age : %d \n", 26);
+
+    scanf("%lf", &rad); //실수형 변수 rad에 입력받기
+    printf("%f", rad); //실수형 변수 rad 출력
+
+    return 0; 
+    }
+```
+
+> OUTPUT
+
+```
+20
+10 20
+My age : 26
+2.223
+2.223000
+```
+
+### 변수의 자료형
+
+ __정수형 변수__ : char, short, int, long, long long  
+ __실수형 변수__ : float, double, long double
+
+각 자료형의 크기는 필요할 때 다시 찾아보기로 하자.
+
+### 연산자
+
+ __%__ : 두 피 연산자의 값을 나눈 후 생긴 나머지 ex) num = 7 % 4;  
+ __++num__ : ex) val = ++num; 인 경우, num을 1 증가 시킨 후 val에 대입  
+ __num++__ : ex) val = num++; 인 경우, val에 num을 대입 후 num 1 증가  
+
+* 비트 연산자  
+
+ 연산자|연산자의 기능|예시
+ :---:|:---:|:---:
+ &|비트 단위로 AND 연산|num1&num2;
+ ^|비트 단위로 XOR 연산|상동
+ ~|피연산자의 모든 비트 반전|~num1;
+ <<|피연산자의 비트 열을 왼쪽으로 이동시킴|num1 << 2;
+ >>|피연산자의 비트 열을 오른쪽으로 이동시킴|상동
+
+### 데이터 입력
+
+> INPUT
+
+```C
+#include <stdio.h>
+int main(void){
+    int num1, num2, num3;
+    scanf_s("%d %d %d", &num1, &num2, &num3);
+    printf("%d %d %d \n", num1, num2, num3);
+
+    double rad;
+    scanf("%lf", &rad); 
+    printf("%f", rad); 
+    return 0;
+}
+```
+
+> OUTPUT 
+
+```
+1 22 33  
+1 22 33  
+2.223
+2.223000
+```
+
+___
+
+최종수정일 2020.08.26
+
+
+
+> ###### References
+> 고려대학교 202R 자료구조, 김민수  
+> 고려대학교 181R 컴퓨터언어 및 실습, 천지영 
+
+{% highlight ruby %}
+print("hello, neighbors!")
+print("Sungwon Kim © 2020 • All rights reserved.")
+{% endhighlight %}
+
+[Github][githuburl]
+
+[githuburl]: https://github.com/kpiswon
+
