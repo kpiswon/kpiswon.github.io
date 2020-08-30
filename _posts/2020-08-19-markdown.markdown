@@ -4,6 +4,7 @@ title:  "Markdown 작성법"
 date:   2020-08-19 20:50:00
 categories: Jekyll
 tags : [jekyll, markdown, github page, 지킬, 마크다운]
+comments: true
 ---
 
 마크다운(markdown)은 일반 텍스트로 서식이 있는 문서를 작성하는 데 편리한 언어이다. 

@@ -4,6 +4,7 @@ title:  "C언어 한 번에 기억 되살리기 - 개발환경 구축부터 주�
 date:   2020-08-26 02:30:00
 categories: C_Programming
 tags : [C언어, C, 개발환경, Visual Studio]
+comments: true
 ---
 
 파이썬에 익숙하다보니 C언어를 배웠음에도 불구하고 문법이 헷갈리는 경우가 많다.

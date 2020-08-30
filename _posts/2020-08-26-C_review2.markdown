@@ -3,7 +3,8 @@ layout: post
 title:  "C언어 한 번에 기억 되살리기 - 개발환경 구축부터 주요 문법까지(PART II)"
 date:   2020-08-30 02:30:00
 categories: C_Programming
-tags : [C언어, C, 개발환경, Visual Studio, 배열, 포인터, 반복문, switch문, for문, 조건문, 삼항연산자, ]
+tags : [C언어, C, 개발환경, Visual Studio, 배열, 포인터, 반복문, switch문, for문, 조건문, 삼항연산자]
+comments: true
 ---
 
 [이어서](https://kpiswon.github.io/c_programming/2020/08/26/C_review.html) 기본적으로 자주 쓰이는 함수들을 정리해보겠다. 
