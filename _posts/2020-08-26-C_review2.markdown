@@ -3,7 +3,7 @@ layout: post
 title:  "C언어 한 번에 기억 되살리기 - 개발환경 구축부터 주요 문법까지(PART II)"
 date:   2020-08-30 02:30:00
 categories: C_Programming
-tags : [C언어, C, 개발환경, Visual Studio]
+tags : [C언어, C, 개발환경, Visual Studio, 배열, 포인터, 반복문, switch문, for문, 조건문, 삼항연산자, ]
 ---
 
 [이어서](https://kpiswon.github.io/c_programming/2020/08/26/C_review.html) 기본적으로 자주 쓰이는 함수들을 정리해보겠다. 
@@ -158,70 +158,107 @@ int main(void){
 
 ---
 
-
-> OUTPUT
+### 함수
+  
+###### 예시1 (전달 인자 O, 반환 값 O)
+```
+int Add (int num1, int num2){
+    int result = num1 + num2;
+    return result;
+}
+```
 
 ```
-20
-10 20
-My age : 26
-2.223
-2.223000
-```
-
-### 변수의 자료형
-
- __정수형 변수__ : char, short, int, long, long long  
- __실수형 변수__ : float, double, long double
-
-각 자료형의 크기는 필요할 때 다시 찾아보기로 하자.
-
-### 연산자
-
- __%__ : 두 피 연산자의 값을 나눈 후 생긴 나머지 ex) num = 7 % 4;  
- __++num__ : ex) val = ++num; 인 경우, num을 1 증가 시킨 후 val에 대입  
- __num++__ : ex) val = num++; 인 경우, val에 num을 대입 후 num 1 증가  
-
-* 비트 연산자  
-
- 연산자|연산자의 기능|예시
- :---:|:---:|:---:
- &|비트 단위로 AND 연산|num1&num2;
- ^|비트 단위로 XOR 연산|상동
- ~|피연산자의 모든 비트 반전|~num1;
- <<|피연산자의 비트 열을 왼쪽으로 이동시킴|num1 << 2;
- >>|피연산자의 비트 열을 오른쪽으로 이동시킴|상동
-
-### 데이터 입력
-
-> INPUT
-
-```C
-#include <stdio.h>
 int main(void){
-    int num1, num2, num3;
-    scanf_s("%d %d %d", &num1, &num2, &num3);
-    printf("%d %d %d \n", num1, num2, num3);
-
-    double rad;
-    scanf("%lf", &rad); 
-    printf("%f", rad); 
+    int sum;
+    sum = Add(3,5);
+    printf(%d \n, sum);
     return 0;
 }
 ```
 
-> OUTPUT 
+###### 예시2 (전달 인자 O, 반환 값 X)
+```
+void ShowAddResult(int num){
+    printf("덧셈 결과 출력 : %d \n", num);
+}
+```
+
+###### 예시3 (전달 인자 X, 반환 값 O)
+```
+int ReadNum(void){
+    int num;
+    scanf("%d", &num);
+    return num;
+}
+```
+
+###### 예시4 (전달 인자 X, 반환 값 X)
+```
+void Explain(void){
+    printf("두 개의 정수 입력: ");
+}
+```
+
+#### 종합
+{% highlight ruby %}
+int main(void){
+    int num1, num2, sum;
+    Explain();
+    num1 = ReadNum(), num2 = ReadNum(); //scanf는 띄어쓰기 기준으로 띄어쓰기까지 읽는다
+    sum = Add(num1, num2);
+    ShowAddResult(sum);
+    return 0;
+}
+{%endhighlight%}
+
+---
+
+### 배열
+> __int Arrayname[4];__  
+int : 배열의 자료형  
+Arrayname : 배열의 이름  
+[4] : 배열의 길이  
+
+> __int TwoDimArr[5][5];__  
+> __int ThreeDimArr[3][3][3];__  
+> 1차원 뿐만 아니라, 2,3차원의 배열도 선언 가능하다.
+
+###### __예시 1__  
+```
+int arr[5] = {1,2}; //부족한 부분은 0으로 채워짐
+```
+
+* 결과 1   
+arr = {1,2,0,0,0}
+
+
+###### __예시 2__
+```
+char str[14] = "GOOD MORNING!";
+```
+
+* 결과 2  
+str = {G,O,O,D, ,M,O,R,N,I,N,G,!,\0}  
+널 문자(\0)은 문자열의 끝을 의미한다.
+
+---
+### 포인터  
+> 정수 7이 저장된 int 형 변수 num을 선언하고, 이것에 대한 포인터 변수 pnum을 선언한 다음, pnum에 변수 num의 주소값을 저장하자.  
 
 ```
-1 22 33  
-1 22 33  
-2.223
-2.223000
+int main(void){
+    int num = 7;
+    int * pnum; //만약 num이 double형이었다면 double * pnum;
+    pnum = &num;
+
+    int * pnum2 = NULL; // 초기화하지 않는 경우에는 널 포인터로 초기화하는 것이 안전하다.
+}
 ```
 
 ___
 
-최종수정일 2020.08.26
+최종수정일 2020.08.31
 
 
 
