@@ -1,0 +1,371 @@
+---
+layout: post
+title:  "C언어 포인터 개념 정리 및 실습"
+date:   2020-09-01 02:30:00
+categories: C_Programming
+tags : [C언어, C, 포인터, 포인터변수, Pointer, 포인터 연산자, 연산자, 선언, 포인터 선언, 포인터 배열, 배열, 포인터 실습, 포인터실습]
+comments: true
+---
+C Programming에서 포인터에 대해서 정리해보고 실습을 진행해보고자 한다. 포인터 변수를 정의하고 시작하자면 **주소 값의 저장을 목적으로 선언되는 변수**이다. 
+
+---
+
+###### 예시  
+정수 7이 저장된 int형 변수 `num` 을 선언하고, 이것에 대한 포인터 변수 `pnum`을 선언한 다음, `pnum`에 변수 `num`의 주소값을 저장해보자.  
+```
+int main(void){
+	int num = 7;
+	int * pnum;
+	pnum = &num
+}
+```
+
+> 변수명 앞에 붙은 *는 포인터 변수임을 표시하는 것인데, *의 위치에 따른 차이는 없다.  
+예를 들어 `int  * ptr;` 이나, `int* ptr;`, `int *ptr;` 모두 가능하다.
+
+포인터 변수의 크기는 시스템의 주소 값 크기에 따라서 달라진다. 예를 들어 16비트의 시스템에서는 주소 값의 크기가 16비트이므로 포인터 변수의 크기도 16비트가 되는 셈이다.
+
+###### 포인터 변수의 선언 예시
+
+
+```
+int * pnum1;         //int 형 변수를 가리키는 포인터 변수 pnum1을 선언
+double * pnum2;      //double 형 변수를 가리키는 포인터 변수 pnum2을 선언
+unsigned int * pnum3;//unsigned int형 변수를 가리키는 포인터 변수 pnum3을 선언
+```
+ 
+---
+#### 포인터 연산자  
+> #####  & 연산자  
+
+변수의 주소 값을 반환하는 연산자이다.  
+###### 예시  
+```
+int main(void){
+	int num = 5;
+	int * pnum = &num;
+
+	double num2 = 4;
+	double * pnum2 = &num2;
+}
+```
+* & 연산자는 변수의 주소 값을 반환하기 때문에 상수가 아닌 변수가 피연산자이어야 한다. 이유는 포스트 내 `잘못된 포인터의 사용`의 예시를 보면 된다, 
+* & 연산자의 반환 값이 포인터 변수에 저장된다.  
+
+> ##### * 연산자  
+
+포인터가 가리키는 메모리를 참조하는 연산자이다.
+###### 예시
+```
+int main(void){
+	int num = 5;
+	int * pnum = &num;   // pnum이 num을 가리킴
+	*pnum = 10;         // pnum이 가리키는 변수에 10 저장
+	printf("%d", *pnum); // pnum이 가리키는 변수의 값 출력
+}
+```
+* `pnum` 자체는 변수의 주소를 뜻하고, `*pnum`은 `pnum`의 주소가 가리키는 변수의 값을 뜻한다.  
+* 위 코드에서 `*pnum`은 `num`을 의미하며, `num` 대신 `*pnum`을 사용할 수 있다.
+
+###### 실습예제
+
+```C
+#include <stdio.h>
+
+int main(void){
+	int num1 = 100, num2 = 100;
+	int * pnum;
+
+	pnum = &num1;
+	(*pnum) += 30;
+
+	pnum = &num2;
+	(*pnum) -= 30;
+
+	printf("num1: %d, num2: %d \n", num1, num2);
+
+	return 0;
+}
+```
+
+* 결과
+{%highlight ruby %}
+num1: 130, num2: 70
+{% endhighlight %}
+
+---
+#### 포인터의 사용
+> ##### 잘못된 포인터의 사용
+
+```
+int main(void){
+	int * ptr;
+	*ptr = 100;
+	...
+}
+```
+위 코드는 `ptr`이 쓰레기 값으로 초기화가 되므로 100이 저장되는 위치를 알 수 없게 된다. 따라서 매우 위험한 코드이다.
+
+```
+int main(void){
+	int * ptr = 100;
+	*ptr = 10;
+	...
+}
+```
+포인터 변수에 100을 저장했는데, 이것이 저장되는 위치를 알 수 없다. 이것 역시 매우 위험한 코드이다. 
+
+> ##### NULL 포인터  
+
+```
+int main(void){
+	int * ptr1 = 0;
+	int * ptr2 = NULL;
+	...
+}
+```
+잘못된 포인터 연산을 막기위해 특정한 값으로 초기화하지 않는 경우에는 NULL포인터로 초기화하는 것이 안전하다.  
+* 널 포인터 NULL은 숫자 0을 의미하고, 이것은 **아무것도 가리키지 않는다**는 의미이다.
+
+---
+#### 실습예제  
+> ##### 예제1
+
+```C
+#include <stdio.h>
+
+int main(void){
+	int num = 10;
+	int * ptr1 = &num;
+	int * ptr2 = ptr1;
+
+	(*ptr1)++;
+	(*ptr2)++;
+	printf("%d \n", num);
+
+	return 0;
+}
+```
+
+* 결과
+{%highlight ruby %}
+12
+{% endhighlight %}
+
+> ##### 예제2
+
+```C
+- int형 변수 num1과 num2를 선언함과 동시에 각각 10, 20으로 초기화하고, int형 포인터 변수 ptr1과 ptr2를 선언하여 각각 num1, num2를 가리키게 함
+- 그 다음 ptr1과 ptr2를 이용해서 num1의 값을 10 증가시키고, num2의 값을 10 감소시킴
+- 그리고 그 다음 두 포인터 변수 ptr1과 ptr2가 가리키는 대상을 서로 바꾸고, ptr1과 ptr2가 가리키는 변수에 저장된 값을 출력하는 프로그램 작성
+```
+
+* 코드 
+
+```
+#include <stdio.h>
+
+int main(void) {
+	int num1 = 10, num2 = 20;
+
+	int* ptr1 = &num1, * ptr2 = &num2, * temp = 0;
+
+	*ptr1 += 10;
+	*ptr2 -= 10;
+
+	temp = ptr1;
+	ptr1 = ptr2;
+	ptr2 = temp;
+
+	printf("ptr1: %d, ptr2: %d", *ptr1, *ptr2);
+	
+	return 0;
+}
+```
+
+* 결과
+
+{%highlight ruby %}
+ptr1: 10, ptr2: 20
+{% endhighlight %}
+
+---
+#### 포인터와 배열
+배열의 이름은 **배열의 시작 주소 값을 의미하는 포인터**이다. 단순히 주소 값이 아닌 포인터인 이유는 메모리 접근에 사용되는 * 연산이 가능하기 때문이다.  
+
+||포인터 변수|배열의 이름|
+|:---:|:---:|:---:|
+|이름의 존재유무|존재함|존재함|
+|무엇을 나타내거나 저장하는 지|메모리 주소 값|메모리 주소 값|
+|주소 값의 변경이 가능한지|가능함|불가능함|
+
+###### 예제
+
+```C
+#include <stdio.h>
+
+int main(void){
+	int arr[3] = {0,1,2};
+	printf("배열의 이름: %p \n", arr);
+	printf("첫 번째 요소: %p \n", &arr[0]);
+	printf("두 번째 요소: %p \n", &arr[1]);
+	printf("세 번째 요소: %p \n", &arr[2]);
+
+	return 0;
+}
+```
+
+* 결과  
+
+{% highlight ruby %}
+배열의 이름: 006FFE0C
+첫 번째 요소: 006FFE0C
+두 번째 요소: 006FFE10
+세 번째 요소: 006FFE14
+{% endhighlight %}
+
+---
+
+#### 배열의 포인터 형
+배열의 이름이 가리키는 변수의 자료형은 근거로 판단한다.  
+###### 예제
+```C
+#include <stdio.h>
+
+int main(void){
+	int arr1[3] = {1,2,3};
+	double arr2[3] = {1.1, 2.2, 3.3};
+
+	printf("%d %g \n", *arr1, *arr2);
+	*arr1 += 100;
+	*arr2 += 120.5;
+	printf("%d %g \n", arr1[0], arr2[0]);
+
+	return 0;
+}
+```
+
+* 결과  
+
+{% highlight ruby %}
+1 1.1
+101 121.6
+{% endhighlight %}
+
+위 코드에서 `*arr1`과 `*arr2`를 출력하면 각 배열의 첫 번째 요소의 포인터가 가리키는 변수의 값을 출력해주기 때문에 배열의 첫 번째 요소가 출력되게 된다.
+
+---
+
+#### 포인터의 사용  
+포인터를 배열의 이름처럼 사용할 수 있다. 
+```
+int main(void){
+	int arr[3] = {1,2,3};
+	arr[0] += 5;
+	arr[1] += 7;
+	arr[2] += 9;
+	...
+}
+```
+위 배열과 같이 `arr`은 int형 포인터이다. 위 배열의 사용법처럼 실제로 포인터 변수 `ptr`을 대상으로 `ptr[0]`, `ptr[1]`, `ptr[2]`와 같은 방식으로 메모리 공간에 접근이 가능하다.
+
+###### 예제1  
+```C
+#include <stdio.h>
+
+int main(void){
+	int arr[3] = {1,2,3};
+	int * ptr = &arr[0];
+
+	printf("%d %d \n", arr[0], ptr[0]);
+	printf("%d %d \n", arr[1], ptr[1]);
+	printf("%d %d \n", arr[2], ptr[2]);
+	printf("%d %d \n", *arr, *ptr);
+}
+```
+
+* 결과  
+
+{% highlight ruby %}
+1 1
+2 2
+3 3
+1 1
+{% endhighlight %}
+
+###### 예제2  
+```C
+#include <stdio.h>
+
+int main(void){
+	int arr[3] = {11,22,33};
+	int * ptr = arr;
+
+	printf("%d %d %d \n", *ptr, *(ptr + 1), *(ptr + 2));
+	printf("%d ", *ptr); ptr++;
+	printf("%d ", *ptr); ptr++;
+	printf("%d ", *ptr); ptr--;
+	printf("%d ", *ptr); ptr--;
+	printf("%d ", *ptr); printf("\n");
+
+	return 0;
+}
+```
+
+* 결과  
+
+{% highlight ruby %}
+11 22 33
+11 22 33 22 11
+{% endhighlight %}
+___
+
+#### 실습예제
+
+```C
+- 길이가 5인 int형 배열 arr를 선언하고 이를 {1,2,3,4,5}로 초기화한 다음, 이 배열의 첫 번째 요소를 가리키는 포인터 변수 ptr를 선언함
+- 그 다음 포인터 변수 ptr에 저장된 값을 변경하지 말고, 모든 요소의 값을 2씩 증가시키고, 이 값을 출력하는 예제를 작성하는 프로그램 작성
+```
+
+* 코드 
+
+```
+#include <stdio.h>
+
+int main(void) {
+	int arr[5] = { 1,2,3,4,5 };
+	int* ptr = &arr[0];
+
+	for (int i = 0; i < 5; i++) {
+		*(ptr + i) += 2;
+		printf("%d ", ptr[i]);
+	}
+
+	return 0;
+}
+```
+
+* 결과
+
+{%highlight ruby %}
+3 4 5 6 7
+{% endhighlight %}
+
+
+
+최종수정일 2020.09.01
+
+
+
+> ###### References
+> 고려대학교 181R 컴퓨터언어 및 실습, 천지영 
+
+{% highlight ruby %}
+print("hello, neighbors!")
+print("Sungwon Kim © 2020 • All rights reserved.")
+{% endhighlight %}
+
+[Github][githuburl]
+
+[githuburl]: https://github.com/kpiswon
+
