@@ -2,7 +2,7 @@
 layout: post
 title:  "자료구조(Data Structure) 1주차 : 코딩테스트"
 date:   2020-09-01 10:30:00
-categories: C_Programming
+categories: Data Structure
 tags : [C언어, C, 자료구조, 자료구조 테스트]
 comments: true
 ---
