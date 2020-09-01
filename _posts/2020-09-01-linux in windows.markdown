@@ -32,7 +32,7 @@ comments: true
 #### 2. WSL 2로 업데이트  
  > `windows키 + R`에서 `winver`를 입력한 다음 windows의 버전이 버전 1903 이하, 빌드 18362 이하인 경우 Windows 버전을 최신으로 업데이트 한 후 진행합니다.
   
- WSL2를 설치하기 전에 *가상 머신 플랫폼* 옵션 기능을 사용하도록 설정한다. 아까와 같이 PowerShell을 열어 다음을 입력한다.
+ WSL2를 설치하기 전에 **가상 머신 플랫폼** 옵션 기능을 사용하도록 설정한다. 아까와 같이 PowerShell을 열어 다음을 입력한다.
 
  ```PowerShell
  dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
@@ -89,7 +89,7 @@ $ touch abcd.c
 
 ---
 
-#### 5-2. 리눅스와 인도우 간 파일 접근 방법 2
+#### 5-2. 리눅스와 윈도우 간 파일 접근 방법 2
 다른 방법으로 윈도우에 리눅스를 위한 작업공간(폴더)를 아예 만들어 놓는 방법도 있다.
 > 예) D:\ubuntu_data
   
