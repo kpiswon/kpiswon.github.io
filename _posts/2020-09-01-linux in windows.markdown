@@ -48,10 +48,10 @@ comments: true
 
 #### 3. Microsoft Store에 들어가 "Ubuntu"를 검색하여 설치한다.  
  현재 Ubuntu 20.04 LTS가 가장 최신이므로 이걸 다운로드하였다.
- ![WSL1](/assets/images/WSL1.PNG)
+ ![WSL1](/assets/images/WSL1.png)
 
  기다리면 설치가 완료 후, username과 password를 설정하는 커맨드가 뜬다. 비밀번호는 2번 입력하고 잊어버리지 않도록 하자.
- ![WSL2](/assets/images/WSL2.PNG)
+ ![WSL2](/assets/images/WSL2.png)
 
  ---
 
@@ -113,7 +113,7 @@ $ ln -s /mnt/d/ubuntu_data/ win_data
 * /mnt/d/ubuntu_data/  : 리눅스에서 윈도우 폴더 접근 경로 대상  
 * win_data : win_data라는 이름으로 링크를 걸겠다라는 뜻.
 
- ![WSL3](/assets/images/WSL3.PNG)
+ ![WSL3](/assets/images/WSL3.png)
  
  링크가 잘 생성된 것을 확인할 수 있다.  
  이제 `cd win_data`라고만 쳐도 해당 폴더로 쉽게 넘나들 수 있다.
@@ -131,7 +131,7 @@ Notepad++ 에서 폰트 설정은
 > 설정 > 스타일 설정 > Global Styles > Default Style > 글꼴 스타일
 
 에서 변경할 수 있다.
-![WSL4](/assets/images/WSL4.PNG)
+![WSL4](/assets/images/WSL4.png)
 
 ---
 
