@@ -57,7 +57,7 @@ comments: true
 
  ![LM5](/assets/images/LM5.png)
  
- 위 RNN encoder를 재활용하여 char 단위가 아니라 띄어쓰기 단위로 학습을 시켜보자.
+ 위 RNN encoder를 구조를 인지해두고 char 단위가 아니라 띄어쓰기 단위로 학습을 시켜보자.
 
  ![LM6](/assets/images/LM6.png)
 
