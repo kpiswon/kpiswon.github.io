@@ -39,13 +39,28 @@ comments: true
 
 ## Recurrent Neural Network(RNN) 기반의 언어 모델
 
- RNN은 히든 노드가 방향을 가진 엣지로 연결돼 순환구조를 이루는(directed cycle) 인공신경망의 한 종류이다. 이전 state의 정보가 다음 state를 사용됨으로써, 시계열 데이터 처리에 적합하다.  
+ Markov 확률 기반의 언어 모델은 현재 상태에서만 독립적으로 의존하여 다음 상태를 예측하는 모델이기 때문에, 과거의 문맥을 반영하기 어렵다. 이를 보완하는 방법으로 RNN 기반의 언어모델이 등장하였는데, **<u>RNN은 히든 노드가 방향을 가진 엣지로 연결돼 순환구조를 이루는(directed cycle) 인공신경망의 한 종류이다. 이전 state의 정보가 다음 state를 사용됨으로써, 시계열 데이터 처리에 적합하다.</u>**  
 
- 기본적인 RNN의 구조는 다음과 같다.
+ 기본적인 RNN의 구조는 다음과 같다. 현재 단계의 Input에서 미래를 예측하는 Output를 예측하는 데에 있어서 현재의 히든레이어를 사용하는데, 현재의 히든레이어는 이전에 미래를 예측하는 데 쓰였던 전 단계의 히든레이어를 반영하여 계산하므로, 문맥을 반영할 수 있게 된다.
 
  ![LM4](/assets/images/LM4.png)
 
- INPUT은 character 단위가 될 수도 있고, word, sentence 등으로 설정할 수 있다. 예시는 `'hello'`를 character 단위(알파벳)로 끊어서 RNN의 학습과정을 들어보겠다.
+ INPUT은 character 단위가 될 수도 있고, word, sentence 등으로 설정할 수 있다. 예시는 `'hello'`를 character 단위(알파벳)로 끊어서 RNN의 학습과정을 들어보겠다.  
+ 먼저 각각의 알파벳은 one-hot-vector로 바꾸어 input으로 넣어준다. one-hot-vector는 0,1로 표현한 알파벳의 고유벡터라고 생각하면 된다.
+
+ > h : (1,0,0,0)  
+ > e : (0,1,0,0)  
+ > l : (0,0,1,0)  
+ > o : (0,0,0,1)  
+
+ 다음 문자를 학습하는 RNN encoder의 구조는 다음과 같다.
+
+ ![LM5](/assets/images/LM5.png)
+ 
+ 
+
+
+ 
  
 
 

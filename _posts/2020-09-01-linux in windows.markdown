@@ -47,7 +47,7 @@ comments: true
  ---
 
 #### 3. Microsoft Store에 들어가 "Ubuntu"를 검색하여 설치한다.  
- 현재 Ubuntu 20.04 LTS가 가장 최신이므로 이걸 다운로드하였다.
+ 현재 Ubuntu 20.04 LTS가 가장 최신이므로 이걸 다운로드하였다. 최신이라고 좋은 것은 아니고 18.04 버젼이 많이 쓰인다.
  ![WSL1](/assets/images/WSL1.png)
 
  기다리면 설치가 완료 후, username과 password를 설정하는 커맨드가 뜬다. 비밀번호는 2번 입력하고 잊어버리지 않도록 하자.
