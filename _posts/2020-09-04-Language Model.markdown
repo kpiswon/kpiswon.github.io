@@ -81,7 +81,9 @@ comments: true
  |한국어 텍스트|번역된 영어 텍스트|
  |"오늘 날씨 가 참 좋습니다"|명사 명사 조사 부사 동사|
 
-### RNN 모델의 구조적 문제점  
+---
+
+## RNN 모델의 구조적 문제점  
 
  문맥을 파악하는 RNN을 모델을 만들었는 데 RNN 모델에도 구조적인 문제점이 존재한다. 
 
@@ -91,20 +93,10 @@ comments: true
 
  이를 개선하기 위해 어텐션(Attention) 모델이 등장하는데, Attention 모델은 최종 output인 Context Vector만 활용하는 RNN과 달리, 각각의 output을 모두 이용하여 Context Vector를 Dynamic하게 생성하는 모델이다. 이에 대해서는 다음 포스팅에서 이어 설명하겠다.
 
-  ![LM7](/assets/images/LM7.png)
+  ![LM8](/assets/images/LM8.png)
 
 ---
 
- 
-
-
- 
- 
-
-
-
-
----
 
 
 최종수정일 2020.09.19
