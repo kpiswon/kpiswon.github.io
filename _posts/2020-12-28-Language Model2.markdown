@@ -49,7 +49,7 @@ comments: true
 
  ![LM2-6](/assets/images/LM2-6.png) 
 
- 위에서 구한 첫 번째 context vector(cv1)를 decoder의 첫 번째 RNN cell에 넣어준다. 지금껏 번역한 이전 state가 없기 때문에 {% raw %}<start>{% endraw %}라는 신호도 함께 input으로 넣어주게 된다.
+ 위에서 구한 첫 번째 context vector(cv1)를 decoder의 첫 번째 RNN cell에 넣어준다. 지금껏 번역한 이전 state가 없기 때문에 'start'라는 신호도 함께 input으로 넣어주게 된다.
 
  ![LM2-7](/assets/images/LM2-7.png)  
 
@@ -63,7 +63,7 @@ comments: true
 
  다시 FC layer에서 나온 s1, s2, s3의 score값을 softmax를 취하면 새로운 Attention weight를 계산할 수 있다. 위 예시에서 2번째 단계에서는 How에 0.1, are에 0.0, you?에 0.9의 가중치를 계산하였다. 이를 이용하여 context vector (cv2)를 구하고, 두 번째 RNN cell에 전달한다. 이와 함께 이전 RNN cell의 output도 함께 전달하여 '지내?'라는 output을 도출하게 된다.
 
- 한 번의 사이클을 더 돌게 되면 {% raw %}<end>{% endraw %}라는 output이 나오게 되며, 이 떄 사이클은 멈추게된다. 즉, 번역결과로 우리가 원하는 '잘 지내?'라는 번역결과가 나오는 것이다.
+ 한 번의 사이클을 더 돌게 되면 'end'라는 output이 나오게 되며, 이 때 사이클은 멈추게된다. 즉, 번역결과로 우리가 원하는 '잘 지내?'라는 번역결과가 나오는 것이다.
 
  여기까지 과정을 살펴보면, RNN의 기존 모델에서 Context Vector의 고정된 size로 인한 한계를 극복하고 Dynamic하게 context vector를 만드는 과정을 볼 수 있다. 이는 좀 더 방대한 양의 정보를 함축하는 데 있어서 효율적일 것이란 것을 체감할 수 있다. 
 
@@ -72,15 +72,17 @@ comments: true
  > - Context Vector가 각각 state별로 디코딩할 때마다 달라진다.  
 
  ### 만약 Prediction이 틀렸다면? - Teacher Forcing  
-  디코딩을 할 때 이전 RNN cell의 output을 가져다 쓰기 때문에, 이전 cell에서 잘못된 output을 도출하였다면 이후 값들은 안봐도 계속 틀릴 확률이 농후할 것이다. 이러한 점을 극복하고 학습을 좀 더 빠르고 효율적으로 진행하기 위하여 이전 RNN cell의 output을 가져다 input으로 넣는 대신, 정답을 넣어주는 방법이 있다. 이를 Teacher Forcing Method라고 하는 데, 이렇게 함으로서 과거에는 잘못된 결과를 도출했음에도 불구하고, 이 잘못된 결과를 가져다 쓰지 않고 정답을 input으로 학습을 하기 때문에 뒷부분은 올바른 prediction을 할 수 있게 된다.  
+
+  디코딩을 할 때 이전 RNN cell의 output을 가져다 쓰기 때문에, 이전 cell에서 잘못된 output을 도출하였다면 이후 값들은 안봐도 계속 틀릴 확률이 농후할 것이다. 이러한 점을 극복하고 학습을 좀 더 빠르고 효율적으로 진행하기 위하여 이전 RNN cell의 output을 가져다 input으로 넣는 대신, 정답을 넣어주는 방법이 있다. 이를 **Teacher Forcing Method**라고 하는 데, <u>이렇게 함으로서 과거에는 잘못된 결과를 도출했음에도 불구하고, 이 잘못된 결과를 가져다 쓰지 않고 정답을 input으로 학습을 하기 때문에 뒷부분은 올바른 prediction을 할 수 있게 된다.</u>  
 
 ---
 
 ## Attention 모델의 한계점
  Attention 모델은 앞에서 언급했듯  
- * 1. 기존 RNN의 고정된 Context Vector 크기로 인해 상대적으로 긴 Sequence의 정보를 함축할 수 없는 것을 해결한 점
- * 2. 중요한 정보만 가중치를 주어 Context Vecotor에 영향을 주게 하는 점
- * 3. 매우 긴 Sequence에 대해 앞부분의 정보가 뒤로갈수록 희석되지 않는다는 점**에서 기존 Seq2Se1의 encoder, decoder의 성능을 비약적으로 향상시켰다.  
+ * 1. 기존 RNN의 고정된 Context Vector 크기로 인해 상대적으로 긴 Sequence의 정보를 함축할 수 없는 것을 해결한 점  
+ * 2. 중요한 정보만 가중치를 주어 Context Vecotor에 영향을 주게 하는 점  
+ * 3. 매우 긴 Sequence에 대해 앞부분의 정보가 뒤로갈수록 희석되지 않는다는 점  
+ 에서 기존 Seq2Se1의 encoder, decoder의 성능을 비약적으로 향상시켰다.  
  하지만 여전히 RNN이 순차적으로 연산이 이루어지고 있는 것은 변치 않는다. 이것이 내포하는 것은 아직도 연산 속도가 느리다는 점이다. 이를 해결하는 방안으로 그냥 RNN을 없애버리자! 이에 대해서는 다음 포스팅에서 Self-attention모델, 그리고 이어서 Transformer모델을 다루어보겠다. 
 
 최종수정일 2020.12.28
@@ -88,9 +90,9 @@ comments: true
 
 
 > ###### References
-> [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf)
+> [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf)  
 > [[딥러닝 기계번역] 시퀀스 투 시퀀스 + 어텐션 모델](www.youtube/watch?v=WsQLdu2JMgl)  
-> T academy "자연어 언어모델 'BERT'"
+> T academy "자연어 언어모델 'BERT'"  
 
 {% highlight ruby %}
 print("hello, neighbors!")
