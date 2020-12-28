@@ -71,7 +71,7 @@ comments: true
  > - Attention 모델의 모티브인 중요한 feature를 더 중요하게 고려하는 부분은 Attention weight가 그 역할을 담당한다.  
  > - Context Vector가 각각 state별로 디코딩할 때마다 달라진다.  
 
- ### 만약 Prediction이 틀렸다면? - Teacher Forcing  
+### 만약 Prediction이 틀렸다면? - Teacher Forcing  
 
   디코딩을 할 때 이전 RNN cell의 output을 가져다 쓰기 때문에, 이전 cell에서 잘못된 output을 도출하였다면 이후 값들은 안봐도 계속 틀릴 확률이 농후할 것이다. 이러한 점을 극복하고 학습을 좀 더 빠르고 효율적으로 진행하기 위하여 이전 RNN cell의 output을 가져다 input으로 넣는 대신, 정답을 넣어주는 방법이 있다. 이를 **Teacher Forcing Method**라고 하는 데, <u>이렇게 함으로서 과거에는 잘못된 결과를 도출했음에도 불구하고, 이 잘못된 결과를 가져다 쓰지 않고 정답을 input으로 학습을 하기 때문에 뒷부분은 올바른 prediction을 할 수 있게 된다.</u>  
 
