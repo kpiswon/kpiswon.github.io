@@ -84,7 +84,7 @@ comments: true
  * **<u>중요한 정보만 가중치</u>**를 주어 Context Vecotor에 영향을 주게 하는 점  
  * 매우 긴 Sequence에 대해 **<u>앞부분의 정보가 뒤로갈수록 희석되지 않는다</u>**는 점  
 
- 에서 기존 Seq2Se1의 encoder, decoder의 성능을 비약적으로 향상시켰다.  
+ 에서 기존 Seq2Seq의 encoder, decoder의 성능을 비약적으로 향상시켰다.  
 
  하지만 여전히 RNN이 순차적으로 연산이 이루어지고 있는 것은 변치 않는다. 이것이 내포하는 것은 <u>아직도 연산 속도가 느리다</u>는 점이다. 이를 해결하는 방안으로 **<u>그냥 RNN을 없애버리자!</u>** 이에 대해서는 다음 포스팅에서 Self-attention모델, 그리고 이어서 Transformer모델을 다루어보겠다. 
 
